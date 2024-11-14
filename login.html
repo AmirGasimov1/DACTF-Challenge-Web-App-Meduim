@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    /* Basic styling for the form */
+  </style>
+</head>
+<body>
+  <h1>Login</h1>
+  <form id="loginForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <button type="submit">Login</button>
+  </form>
+  
+  <script>
+    // Function to get cookie values
+    function getCookie(name) {
+      const value = "; " + document.cookie;
+      const parts = value.split("; " + name + "=");
+      if (parts.length === 2) return parts.pop().split(";").shift();
+    }
+
+    document.getElementById('loginForm').onsubmit = function(event) {
+      event.preventDefault();
+
+      // Get entered username and password
+      const usernameInput = document.getElementById('username').value;
+      const passwordInput = document.getElementById('password').value;
+
+      // Retrieve the username and password from cookies
+      const storedUsername = getCookie("username");
+      const storedPassword = "Bl@ckH@t";  // This is the plaintext version participants should decode
+
+      // Check if entered values match cookie values
+      if (usernameInput === storedUsername && passwordInput === storedPassword) {
+        window.location.href = "flag.html"; // Redirect to flag page
+      } else {
+        alert("Invalid credentials. Please try again.");
+      }
+    };
+  </script>
+</body>
+</html>
