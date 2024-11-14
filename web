@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasty Bites</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #ff6347;
+    }
+    .content {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+    .menu-item {
+      background-color: #fff;
+      padding: 10px;
+      margin: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Tasty Bites!</h1>
+  <div class="content">
+    <p>Your go-to spot for delicious meals and recipes.</p>
+    <div class="menu-item">
+      <h3>Spaghetti Bolognese</h3>
+      <p>A classic Italian pasta dish with a savory meat sauce.</p>
+    </div>
+    <div class="menu-item">
+      <h3>Chicken Caesar Salad</h3>
+      <p>Crispy romaine with grilled chicken and Caesar dressing.</p>
+    </div>
+  </div>
+
+  <script>
+    // Set the challenge cookie
+    document.cookie = "username=H8cker; path=/";
+    document.cookie = "password=7c2f6e1e9c12babe3b5e68bcd84e1ec1d79f8a50; path=/"; // SHA1 hash of "Bl@ckH@t"
+  </script>
+</body>
+</html>
