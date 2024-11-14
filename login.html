@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <style>
-    /* Basic styling for the form */
-  </style>
+  <script src="https://cdn.jsdelivr.net/npm/js-md5@0.7.3/build/md5.min.js"></script> <!-- MD5 library -->
 </head>
 <body>
   <h1>Login</h1>
@@ -19,9 +17,8 @@
     <br>
     <button type="submit">Login</button>
   </form>
-  
+
   <script>
-    // Function to retrieve the cookie by name
     function getCookie(name) {
       const value = "; " + document.cookie;
       const parts = value.split("; " + name + "=");
@@ -31,27 +28,24 @@
     document.getElementById('loginForm').onsubmit = function(event) {
       event.preventDefault();
 
-      // Retrieve the stored username and password from cookies
-      const storedUsername = getCookie("username");
-      const storedPassword = getCookie("password"); // This is the SHA256 hash
-
-      // Get user input
       const usernameInput = document.getElementById('username').value;
       const passwordInput = document.getElementById('password').value;
 
-      // Check if entered username matches and if SHA256 of input password matches stored hash
-      const sha256 = new TextEncoder().encode(passwordInput);
-      crypto.subtle.digest('SHA-256', sha256).then(hashBuffer => {
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      // Retrieve stored cookies
+      const storedUsername = getCookie("username");
+      const storedPasswordHash = getCookie("password");
 
-        if (usernameInput === storedUsername && hashHex === storedPassword) {
-          window.location.href = "flag.html"; // Redirect to flag page
-        } else {
-          alert("Invalid credentials. Please try again.");
-        }
-      });
+      // Calculate MD5 hash of entered password
+      const enteredPasswordHash = md5(passwordInput);
+
+      // If username and password hash match, redirect to flag page
+      if (usernameInput === storedUsername && enteredPasswordHash === storedPasswordHash) {
+        window.location.href = "flag.html"; // Redirect to the flag page
+      } else {
+        alert("Invalid credentials. Please try again.");
+      }
     };
   </script>
 </body>
 </html>
+
