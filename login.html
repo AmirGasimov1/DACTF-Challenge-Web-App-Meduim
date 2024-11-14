@@ -19,11 +19,22 @@
   </form>
 
   <script>
+    // Function to get cookies
     function getCookie(name) {
       const value = "; " + document.cookie;
       const parts = value.split("; " + name + "=");
       if (parts.length === 2) return parts.pop().split(";").shift();
+      return null;
     }
+
+    // Debugging function to log cookies
+    function debugCookies() {
+      console.log("Username cookie: " + getCookie("username"));
+      console.log("Password hash cookie: " + getCookie("password"));
+    }
+
+    // Log cookies for debugging
+    debugCookies();
 
     document.getElementById('loginForm').onsubmit = function(event) {
       event.preventDefault();
@@ -35,8 +46,15 @@
       const storedUsername = getCookie("username");
       const storedPasswordHash = getCookie("password");
 
+      console.log("Entered username: " + usernameInput);
+      console.log("Entered password: " + passwordInput);
+      console.log("Stored username: " + storedUsername);
+      console.log("Stored password hash: " + storedPasswordHash);
+
       // Calculate MD5 hash of entered password
       const enteredPasswordHash = md5(passwordInput);
+
+      console.log("Entered password hash: " + enteredPasswordHash);
 
       // If username and password hash match, redirect to flag page
       if (usernameInput === storedUsername && enteredPasswordHash === storedPasswordHash) {
@@ -48,4 +66,3 @@
   </script>
 </body>
 </html>
-
